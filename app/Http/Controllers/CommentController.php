@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\post;
+use App\Models\comment;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = post::all();
-        return $posts;
+        $comments = comment::all();
+        return $comments;
     }
 
     /**
@@ -37,16 +37,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new post();
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->user_id = $request->user_id;
+        $comment = new comment();
+        $comment->user_id = $request->user_id;
+        $comment->post_id = $request->post_id;
+        $comment->content = $request->content;
 
-        $post->save();
+        $comment->save();
 
         return response()->json([
-            'message' => '¡Post creado correctamente!',
-            'post' => $post
+            'message' => 'comentario creado correctamente!',
+            'comment' => $comment
         ],201);
     }
 
@@ -81,14 +81,13 @@ class PostController extends Controller
      */
     public function update(Request $request)
     {
-        $post = post::findOrFail($request->id);
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->user_id = $request->user_id;
+        $comment = comment::findOrFail($request->id);
+        $comment->user_id = $request->user_id;
+        $comment->post_id = $request->post_id;
+        $comment->content = $request->content;
 
-        $post->save();
-
-        return $post;
+        $comment->save();
+        return $comment;
     }
 
     /**
@@ -99,14 +98,23 @@ class PostController extends Controller
      */
     public function destroy(Request $request)
     {
-        $post = post::destroy($request->id);
-        return $post;
+        $comment = comment::destroy($request->id);
+        return $comment;
     }
     /**
-     *  Retorna todos los Post que tiene un usuario
+     * Retorna todos los comentarios que tiene un Post
      */
-    public function myPosts($id){
-        $user = User::find($id);
-        return $user->posts;
+    public function postComments($id){
+        $post = post::find($id);
+        return $post->comments;
+    }
+    /**
+     *  Retorna el nombre del autor del comentario, puede retornar username o cualquier otro dato
+     */
+    public function commentAutor($id){
+        $comment = comment::find($id);
+        return response()->json([
+            'name' => $comment->user->name
+        ]);
     }
 }

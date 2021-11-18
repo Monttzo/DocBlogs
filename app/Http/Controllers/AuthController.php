@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * ***Importante***
+ *  Este archivo contiene errores, los cuales no afectan al resultado directo de las api, así mismo
+ *  este codigo fue creado en base al que se propone en la documentación de jwt para laravel
+ *  https://jwt-auth.readthedocs.io/en/develop/quick-start/
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -82,7 +87,9 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
-
+    /**
+     * Api que crea un usuario
+     */
     public function register(Request $request){
         $Validator = Validator::make($request->all(),[
             'username' => 'required',
@@ -95,7 +102,6 @@ class AuthController extends Controller
         if($Validator->fails()){
             return response()->json($Validator->errors()->toJson(),400);
         }
-
         $user = User::create(array_merge(
             $Validator->validate(),
             ['password' => bcrypt($request->password)]

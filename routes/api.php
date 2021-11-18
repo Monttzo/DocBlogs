@@ -24,16 +24,29 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-
+    /**
+     * User routes
+     */
     Route::post('login', 'App\Http\Controllers\AuthController@login');
     Route::post('logout', 'App\Http\Controllers\AuthController@logout');
     Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
     Route::post('me', 'App\Http\Controllers\AuthController@me');
     Route::post('register', 'App\Http\Controllers\AuthController@register');
+    /**
+     * Post routes
+     */
     Route::get('/posts','App\Http\Controllers\PostController@index');
     Route::post('/posts/create','App\Http\Controllers\PostController@store');
     Route::put('/posts/update/{id}','App\Http\Controllers\PostController@update');
     Route::delete('/posts/delete/{id}','App\Http\Controllers\PostController@destroy');
     Route::post('/posts/myposts/{id}', 'App\Http\Controllers\PostController@myPosts');
-
+    /**
+     * Comments routes
+     */
+    Route::get('/comments','App\Http\Controllers\CommentController@index');
+    Route::post('/comments/create','App\Http\Controllers\CommentController@store');
+    Route::put('/comments/update/{id}','App\Http\Controllers\CommentController@update');
+    Route::delete('/comments/delete/{id}','App\Http\Controllers\CommentController@destroy');
+    Route::post('/comments/postcomments/{id}', 'App\Http\Controllers\CommentController@postComments');
+    Route::post('/comments/commentautor/{id}', 'App\Http\Controllers\CommentController@commentAutor');
 });
