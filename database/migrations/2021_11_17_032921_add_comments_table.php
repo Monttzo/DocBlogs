@@ -24,6 +24,7 @@ class AddCommentsTable extends Migration
 
             $table->string('content');
             
+            $table->string('user_name');
             $table->timestamps();
         });
     }

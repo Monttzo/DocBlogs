@@ -41,6 +41,7 @@ class CommentController extends Controller
         $comment->user_id = $request->user_id;
         $comment->post_id = $request->post_id;
         $comment->content = $request->content;
+        $comment->user_name = $request->user_name;
 
         $comment->save();
 
@@ -85,6 +86,7 @@ class CommentController extends Controller
         $comment->user_id = $request->user_id;
         $comment->post_id = $request->post_id;
         $comment->content = $request->content;
+        $comment->user_name = $request->user_name;
 
         $comment->save();
         return $comment;

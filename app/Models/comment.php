@@ -19,6 +19,7 @@ class comment extends Model
         'user_id',
         'post_id',
         'content',
+        'user_name',
     ];
     /**
      * 

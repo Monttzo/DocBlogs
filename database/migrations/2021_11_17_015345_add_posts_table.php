@@ -22,6 +22,7 @@ class AddPostsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             
+            $table->string('user_name');
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ class post extends Model
         'title',
         'description',
         'user_id',
+        'user_name',
     ];
     /**
      * 

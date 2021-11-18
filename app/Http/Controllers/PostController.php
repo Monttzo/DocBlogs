@@ -41,6 +41,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->description = $request->description;
         $post->user_id = $request->user_id;
+        $post->user_name = $request->user_name;
 
         $post->save();
 
@@ -85,7 +86,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->description = $request->description;
         $post->user_id = $request->user_id;
-
+        $post->user_name = $request->user_name;
         $post->save();
 
         return $post;
