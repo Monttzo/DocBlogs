@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\User;
 use App\Models\post;
 use Illuminate\Http\Request;
@@ -109,5 +110,13 @@ class PostController extends Controller
     public function myPosts($id){
         $user = User::find($id);
         return $user->posts;
+    }
+    /**
+     * 
+     */
+    public function search(Request $request){
+        $date = $request->date . "%";
+        $posts = DB::table('posts')->where('created_at', 'like', $date)->get();
+        return $posts;
     }
 }

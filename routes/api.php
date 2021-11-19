@@ -40,6 +40,7 @@ Route::group([
     Route::put('/posts/update/{id}','App\Http\Controllers\PostController@update');
     Route::delete('/posts/delete/{id}','App\Http\Controllers\PostController@destroy');
     Route::post('/posts/myposts/{id}', 'App\Http\Controllers\PostController@myPosts');
+    Route::post('/posts/search', 'App\Http\Controllers\PostController@search');
     /**
      * Comments routes
      */
