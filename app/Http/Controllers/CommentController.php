@@ -110,13 +110,4 @@ class CommentController extends Controller
         $post = post::find($id);
         return $post->comments;
     }
-    /**
-     *  Retorna el nombre del autor del comentario, puede retornar username o cualquier otro dato
-     */
-    public function commentAutor($id){
-        $comment = comment::find($id);
-        return response()->json([
-            'name' => $comment->user->name
-        ]);
-    }
 }

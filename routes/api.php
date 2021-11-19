@@ -49,5 +49,4 @@ Route::group([
     Route::put('/comments/update/{id}','App\Http\Controllers\CommentController@update');
     Route::delete('/comments/delete/{id}','App\Http\Controllers\CommentController@destroy');
     Route::post('/comments/postcomments/{id}', 'App\Http\Controllers\CommentController@postComments');
-    Route::post('/comments/commentautor/{id}', 'App\Http\Controllers\CommentController@commentAutor');
 });
