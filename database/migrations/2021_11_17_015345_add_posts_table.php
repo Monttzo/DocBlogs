@@ -16,7 +16,7 @@ class AddPostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->string('description', 400);
 
             $table->unsignedBigInteger('user_id');
 
